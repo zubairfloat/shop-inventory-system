@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{%  block body %}
+<style>
+.btn-primary{
+    background-color:rgb(33,30,90);
+}
+.btn-primary:hover{
+    background-color:#26190C;
+}
+</style>
+<div class="btn-group-lg col-lg">
+
+   <a href="{% url 'display_laptops' %}" class="btn btn-primary btn-lg" role="button"> LAPTOP</a>
+   <a href="{% url 'add_laptop' %}" class="btn btn-primary btn-sm" role="button">+</a>
+
+
+
+<a href="{% url 'display_mobiles' %}" class="btn btn-primary btn-lg" role="button"> MOBILE</a>
+   <a href="{% url 'add_mobile' %}" class="btn btn-primary btn-sm" role="button">+</a>
+
+
+
+<a href="{% url 'display_USB' %}" class="btn btn-primary btn-lg" role="button"> USB</a>
+   <a href="{% url 'add_USB' %}" class="btn btn-primary btn-sm" role="button">+</a>
+
+
+     <a href="{% url 'display_memorycard' %}" class="btn btn-primary btn-lg" role="button"> MEMORY CARD</a>
+   <a href="{% url 'add_memorycard' %}" class="btn btn-primary btn-sm" role="button">+</a>
+
+
+ <a href="{% url 'display_handfree' %}" class="btn btn-primary btn-lg" role="button"> HAND FREE</a>
+   <a href="{% url 'add_handfree' %}" class="btn btn-primary btn-sm" role="button">+</a>
+
+ <a href="{% url 'display_charger' %}" class="btn btn-primary btn-lg" role="button"> CHARGER</a>
+   <a href="{% url 'add_charger' %}" class="btn btn-primary btn-sm" role="button">+</a>
+
+
+ <a href="{% url 'display_datacabels' %}" class="btn btn-primary btn-lg" role="button"> DATA CABELS</a>
+   <a href="{% url 'add_datacabels' %}" class="btn btn-primary btn-sm" role="button">+</a>
+
+ <a href="{% url 'display_speakers' %}" class="btn btn-primary btn-lg" role="button"> SPEAKERS</a>
+   <a href="{% url 'add_speakers' %}" class="btn btn-primary btn-sm" role="button">+</a>
+    </div>
+    <br>
+    <h4> Currently Viewing {{ header }}</h4>
+    <br>
+<table class="table table-hover">
+<thead>
+<tr>
+<th> id</th>
+<th> model </th>
+<th> price </th>
+<th> status </th>
+<th> issues </th>
+</tr>
+</thead>
+
+<tbody>
+ {% for item in items %}
+
+     <tr>
+     <td> {{ item.pk }}</td>
+     <td> {{ item.type }}</td>
+     <td> {{ item.price }}</td>
+     <td>{{ item.status }}</td>
+     <td>{{ item.issues }}</td>
+
+     {% if header|lower == "laptops" %}
+     <td>
+         <a href="{% url 'edit_laptop' item.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a>
+         <a href="{% url 'delete_laptop' item.pk %}" class="btn btn-danger btn-sm" role="button">Delete</a>
+     </td>
+
+     {% elif header|lower == "usb" %}
+      <td>
+         <a href="{% url 'edit_usb' item.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a>
+         <a href="{% url 'delete_USB' item.pk %}" class="btn btn-danger btn-sm" role="button">Delete</a>
+     </td>
+
+
+          {% elif header|lower == "memorycard" %}
+      <td>
+         <a href="{% url 'edit_memorycard' item.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a>
+         <a href="{% url 'delete_memmorycard' item.pk %}" class="btn btn-danger btn-sm" role="button">Delete</a>
+     </td>
+
+          {% elif header|lower == "handfree" %}
+      <td>
+         <a href="{% url 'edit_handfree' item.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a>
+         <a href="{% url 'delete_handfree' item.pk %}" class="btn btn-danger btn-sm" role="button">Delete</a>
+     </td>
+
+          {% elif header|lower == "charger" %}
+      <td>
+         <a href="{% url 'edit_charger' item.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a>
+         <a href="{% url 'delete_charger' item.pk %}" class="btn btn-danger btn-sm" role="button">Delete</a>
+     </td>
+
+          {% elif header|lower == "datacabels" %}
+      <td>
+         <a href="{% url 'edit_datacabels' item.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a>
+         <a href="{% url 'delete_datacabel' item.pk %}" class="btn btn-danger btn-sm" role="button">Delete</a>
+     </td>
+
+          {% elif header|lower == "speakers" %}
+      <td>
+         <a href="{% url 'edit_speakers' item.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a>
+         <a href="{% url 'delete_speaker' item.pk %}" class="btn btn-danger btn-sm" role="button">Delete</a>
+     </td>
+
+     {% else %}
+      <td>
+         <a href="{% url 'edit_mobile' item.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a>
+         <a href="{% url 'delete_mobile' item.pk %}" class="btn btn-danger btn-sm" role="button">Delete</a>
+     </td>
+     {% endif %}
+
+     </tr>
+
+{% endfor %}
+</tbody>
+
+</table>
+
+{% endblock %}

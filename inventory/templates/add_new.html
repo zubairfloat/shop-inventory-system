@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body  %}
+
+  <div class="container">
+    <form method="POST">
+
+    {% csrf_token %}
+         <h4> Editing {{ header }}</h4>
+      <h4>{{ header }}</h4>
+
+        {% for field in form %}
+        <div class="form-group row">
+            <label for="id_{{ field.name }}" class="col-2 col-form-label"> {{ field.label }}</label>
+            <div class="col-10">
+                {{ field }}
+            </div>
+        </div>
+        {% endfor %}
+    <button type="submit" class="btn btn-primary" name="button"> Add Devices</button>
+
+    </form>
+
+</div>
+
+{% endblock %}
