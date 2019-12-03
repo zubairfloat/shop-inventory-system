@@ -1,1 +1,0 @@
-web: gunicorn inventry_system.wsgi
